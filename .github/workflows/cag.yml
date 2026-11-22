@@ -3,8 +3,8 @@ name: CAG scrape and publish
 on:
   schedule:
     # Daily run, then a fallback ~12 h later that skips if today's run succeeded (set 21 Nov 2026).
-    - cron: '1 21 * * *'
-    - cron: '1 9 * * *'
+    - cron: '8 21 * * *'
+    - cron: '8 9 * * *'
   workflow_dispatch:
     inputs:
       max_listing_pages:

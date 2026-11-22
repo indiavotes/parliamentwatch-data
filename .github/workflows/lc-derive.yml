@@ -24,7 +24,7 @@ on:
     types: [completed]
   schedule:
     # Daily backstop; the primary trigger is workflow_run (set 21 Nov 2026).
-    - cron: '5 23 * * *'
+    - cron: '12 23 * * *'
   workflow_dispatch:
 
 permissions:
