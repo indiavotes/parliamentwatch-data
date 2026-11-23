@@ -4,14 +4,14 @@
   "r2_origin": null,
   "schema": 2,
   "totals": {
-    "records_with_text": 2812,
-    "shards": 2812,
+    "records_with_text": 2822,
+    "shards": 2822,
     "r2_fallback": 0,
-    "total_text_bytes": 0,
+    "total_text_bytes": 3972799,
     "missing_files": 0,
     "skipped_oversize_no_r2": 0,
     "from_existing_shards": 2812,
-    "txt_files_removed": 0
+    "txt_files_removed": 10
   },
   "shard_stride": 250,
   "shards": [
@@ -5126,6 +5126,11 @@
       "bytes": 954679
     },
     {
+      "file": "texts-123517-0494.json",
+      "count": 1,
+      "bytes": 433325
+    },
+    {
       "file": "texts-123523-0494.json",
       "count": 1,
       "bytes": 528844
@@ -5736,6 +5741,11 @@
       "bytes": 345755
     },
     {
+      "file": "texts-124883-0499.json",
+      "count": 1,
+      "bytes": 683218
+    },
+    {
       "file": "texts-124899-0499.json",
       "count": 1,
       "bytes": 223466
@@ -5826,9 +5836,39 @@
       "bytes": 512687
     },
     {
+      "file": "texts-125066-0500.json",
+      "count": 1,
+      "bytes": 511888
+    },
+    {
       "file": "texts-125067-0500.json",
       "count": 1,
       "bytes": 218967
+    },
+    {
+      "file": "texts-125068-0500.json",
+      "count": 1,
+      "bytes": 608884
+    },
+    {
+      "file": "texts-125069-0500.json",
+      "count": 1,
+      "bytes": 259293
+    },
+    {
+      "file": "texts-125070-0500.json",
+      "count": 1,
+      "bytes": 283737
+    },
+    {
+      "file": "texts-125071-0500.json",
+      "count": 1,
+      "bytes": 269011
+    },
+    {
+      "file": "texts-125072-0500.json",
+      "count": 1,
+      "bytes": 319227
     },
     {
       "file": "texts-125073-0500.json",
@@ -9296,6 +9336,11 @@
       "bytes": 81508
     },
     {
+      "file": "texts-34004-0136.json",
+      "count": 1,
+      "bytes": 340165
+    },
+    {
       "file": "texts-34295-0137.json",
       "count": 1,
       "bytes": 301318
@@ -10664,6 +10709,11 @@
       "file": "texts-4926-0019.json",
       "count": 1,
       "bytes": 329900
+    },
+    {
+      "file": "texts-49295-0197.json",
+      "count": 1,
+      "bytes": 341280
     },
     {
       "file": "texts-4932-0019.json",
