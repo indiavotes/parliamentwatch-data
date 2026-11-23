@@ -449,7 +449,7 @@ def _markers_filename() -> str:
     return "markers.json"
 
 
-DEFAULT_MARKER_SUFFIXES = ("pypdf-empty", "pypdf-error", "ocr-failed")
+DEFAULT_MARKER_SUFFIXES = ("pypdf-empty", "pypdf-error", "ocr-failed", "source-missing")
 
 
 def consolidate_markers(

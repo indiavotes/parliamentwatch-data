@@ -1,0 +1,1 @@
+source-missing for 59_1988_L: sansad.in serves a PDF with no readable pages; pypdf, PyMuPDF and pdftotext all fail (checked 2026-11-23)

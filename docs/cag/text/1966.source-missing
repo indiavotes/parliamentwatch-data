@@ -1,0 +1,1 @@
+source-missing for 1966: cag.gov.in serves a truncated PDF (no trailer or end-of-file marker); pypdf, PyMuPDF and pdftotext all fail (checked 2026-11-23)

@@ -332,6 +332,9 @@ def select_candidates(records: list[dict]) -> list[dict]:
       .pypdf-empty   → known scanned/encrypted, queued for OCR (skip — wasted bandwidth)
       .ocr-failed    → OCR permanent tombstone (skip)
       .pypdf-error   → retryable (still attempt)
+      .source-missing → the PDF is absent or unreadable on sansad.in itself
+                       (HTTP 500/404, or a file of zero bytes); set by hand
+                       after a check, skip (2026-11-23)
       (no marker)    → never attempted (default)
     """
     # Skip records already in texts-meta.json's record_to_shard map —
@@ -358,13 +361,15 @@ def select_candidates(records: list[dict]) -> list[dict]:
             skipped_bundled += 1
             continue
         bm = bundled_markers.get(cid)
-        if bm in ("pypdf-empty", "ocr-failed"):
+        if bm in ("pypdf-empty", "ocr-failed", "source-missing"):
             skipped_marked += 1
             continue
         text_path        = TEXT_DIR / f"{cid}.txt"
         pypdf_empty_path = TEXT_DIR / f"{cid}.pypdf-empty"
         ocr_failed_path  = TEXT_DIR / f"{cid}.ocr-failed"
-        if text_path.exists() or pypdf_empty_path.exists() or ocr_failed_path.exists():
+        source_missing_path = TEXT_DIR / f"{cid}.source-missing"
+        if (text_path.exists() or pypdf_empty_path.exists() or ocr_failed_path.exists()
+                or source_missing_path.exists()):
             skipped_marked += 1
             continue
         if not _has_any_canonical_pdf(r):
@@ -409,6 +414,7 @@ def compute_audit(records: list[dict]) -> dict:
         "pypdf_empty_awaiting_ocr":   0,
         "pypdf_error_retryable":      0,
         "ocr_failed_permanent":       0,
+        "source_missing":             0,
         "never_attempted":            0,
         "no_canonical_pdf":           0,
     }
@@ -433,8 +439,12 @@ def compute_audit(records: list[dict]) -> dict:
                 counts["pypdf_empty_awaiting_ocr"] += 1
             elif mt == "pypdf-error":
                 counts["pypdf_error_retryable"] += 1
+            elif mt == "source-missing":
+                counts["source_missing"] += 1
             else:
                 counts["never_attempted"] += 1
+        elif (TEXT_DIR / f"{cid}.source-missing").exists():
+            counts["source_missing"] += 1
         elif (TEXT_DIR / f"{cid}.ocr-failed").exists():
             counts["ocr_failed_permanent"] += 1
         elif (TEXT_DIR / f"{cid}.pypdf-empty").exists():

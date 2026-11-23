@@ -388,13 +388,15 @@ def extract_missing_texts(reports: dict[int, dict], *, deadline: float) -> dict:
             skipped_bundled += 1
             continue
         bm = bundled_markers.get(cid)
-        if bm in ("pypdf-empty", "ocr-failed"):
+        if bm in ("pypdf-empty", "ocr-failed", "source-missing"):
             skipped_marked += 1
             continue
         text_path        = TEXT_DIR / f"{rid}.txt"
         pypdf_empty_path = TEXT_DIR / f"{rid}.pypdf-empty"
         ocr_failed_path  = TEXT_DIR / f"{rid}.ocr-failed"
-        if text_path.exists() or pypdf_empty_path.exists() or ocr_failed_path.exists():
+        source_missing_path = TEXT_DIR / f"{rid}.source-missing"
+        if (text_path.exists() or pypdf_empty_path.exists() or ocr_failed_path.exists()
+                or source_missing_path.exists()):
             skipped_marked += 1
             continue
         candidates.append((rid, meta["pdf_url"]))
@@ -559,6 +561,7 @@ def compute_audit(reports: dict[int, dict]) -> dict:
         "pypdf_empty_awaiting_ocr":   0,
         "pypdf_error_retryable":      0,
         "ocr_failed_permanent":       0,
+        "source_missing":             0,
         "never_attempted":            0,
         "no_pdf_url":                 0,
     }
@@ -583,8 +586,12 @@ def compute_audit(reports: dict[int, dict]) -> dict:
                 counts["pypdf_empty_awaiting_ocr"] += 1
             elif mt == "pypdf-error":
                 counts["pypdf_error_retryable"] += 1
+            elif mt == "source-missing":
+                counts["source_missing"] += 1
             else:
                 counts["never_attempted"] += 1
+        elif (TEXT_DIR / f"{rid}.source-missing").exists():
+            counts["source_missing"] += 1
         elif (TEXT_DIR / f"{rid}.ocr-failed").exists():
             counts["ocr_failed_permanent"] += 1
         elif (TEXT_DIR / f"{rid}.pypdf-empty").exists():
