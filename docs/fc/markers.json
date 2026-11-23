@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-05-17T14:46:28Z",
+  "generated_at": "2026-11-23T03:10:12Z",
   "totals": {
     "pypdf-empty": 0,
     "pypdf-error": 2,
-    "ocr-failed": 0
+    "ocr-failed": 0,
+    "source-missing": 0
   },
   "markers": {
     "copu|LS14_4": "pypdf-error",
