@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-05-30T07:46:08Z",
+  "generated_at": "2026-11-23T03:00:45Z",
   "totals": {
     "pypdf-empty": 0,
     "pypdf-error": 145,
-    "ocr-failed": 0
+    "ocr-failed": 0,
+    "source-missing": 0
   },
   "markers": {
     "housing|LS16_22": "pypdf-error",
